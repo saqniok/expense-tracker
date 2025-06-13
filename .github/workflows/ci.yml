@@ -28,5 +28,5 @@ jobs: # Определяет задачи (jobs), которые будут вы
       working-directory: ./frontend
     
     - name: Run tests # Запускает тесты
-      run: npm run vitest # Эта команда предполагает, что у тебя в package.json есть скрипт test, который запускает твои тесты. Например, в package.json может быть:
+      run: npm vitest # Эта команда предполагает, что у тебя в package.json есть скрипт test, который запускает твои тесты. Например, в package.json может быть:
       working-directory: ./frontend
