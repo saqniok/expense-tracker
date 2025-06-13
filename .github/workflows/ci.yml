@@ -1,0 +1,32 @@
+name: CI/CD # Имя workflow, которое будет отображаться в GitHub Actions.
+
+on: # Определяет, когда workflow должен запускаться
+  push: # Запускается при каждом push в указанные branches.
+    branches:
+      - main # Замените main на имя вашей основной ветки, если она другая (например, master, develop)
+  pull_request: # Запускается при каждом pull request в указанные branches.
+    branches:
+      - main # Замените main на имя вашей основной ветки
+
+jobs: # Определяет задачи (jobs), которые будут выполняться.
+  build-and-test: # Имя вашей задачи.
+    runs-on: ubuntu-latest # Указывает операционную систему, на которой будет выполняться job. ubuntu-latest – это виртуальная машина на базе Ubuntu. 
+    # Для Node.js проектов это обычно предпочтительнее, но если у тебя есть очень специфичные Windows-зависимости, ты можешь использовать windows-latest.
+   
+    steps: # Последовательность шагов, которые будут выполнены в job
+    - name: Checkout code # Первый шаг – получение кода из репозитория
+      uses: actions/checkout@v4 # Использует официальный action для "checkout" кода.
+
+    - name: Set up Node.js # Устанавливает Node.js
+      uses: actions/setup-node@v4 # Использует официальный action для настройки Node.js.
+      with:
+        node-version: '18' # Выберите нужную версию Node.js, например '16', '20'
+
+    - name: Install dependencies # Устанавливает зависимости проекта.
+      run: npm ci # (clean install) часто предпочтительнее npm install в CI/CD, так как он гарантирует использование package-lock.json (или yarn.lock для Yarn)
+      # и работает быстрее при наличии lock-файла. Если у тебя нет lock-файла, используй npm install.
+      working-directory: ./frontend
+    
+    - name: Run tests # Запускает тесты
+      run: npm vitest run # Эта команда предполагает, что у тебя в package.json есть скрипт test, который запускает твои тесты. Например, в package.json может быть:
+      working-directory: ./frontend
