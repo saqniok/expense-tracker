@@ -10,16 +10,16 @@ import { __only_for_test, getExpenses } from "../../expenses-list/format-expense
 global.fetch = vi.fn();
 
 describe('get Expenses', () => {
-    beforeEach(() => {
-        vi.clearAllMocks();
-    });
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
 
-it('should return formatted expenses with displayDate property', async () => {
+  it('should return formatted expenses with displayDate property', async () => {
     const fakeExpenses = [
       { id: '1', amount: 10.99, description: 'Netflix subscription', date: new Date('2025-06-01') },
       { id: '2', amount: 49.99, description: '1 hour with hooker', date: new Date('2025-06-01') }
     ];
-    
+
     // Мокаем getExpensesData чтобы возвращать сырые данные (или форматированные, смотря как у тебя устроена функция)
     getExpensesData.mockResolvedValue(fakeExpenses);
 
@@ -33,8 +33,9 @@ it('should return formatted expenses with displayDate property', async () => {
 
     const formattedResult = __only_for_test.formatExpenses(result);
     expect(formattedResult[0]).toHaveProperty('displayDate');
-    });
-    it('should return error object on failure', async () => {
+  });
+  
+  it('should return error object on failure', async () => {
     getExpensesData.mockRejectedValue(new Error('Network failure'));
 
     const result = await getExpenses();

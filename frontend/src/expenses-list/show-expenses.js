@@ -23,9 +23,9 @@ export function renderExpenses(element, expenses) {
             <span>${expense.description}</span>
             <span>${expense.amount}</span>
             <span>${expense.displayDate}</span>
-        </li>`).join('');
+        </li>`);
 
-        element.innerHTML = `<ol>${items}</ol>`;
+        element.innerHTML = `<ul>${items.join('')}</ul>`;
 }
 
 // ol - Ordered List
