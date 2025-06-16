@@ -1,4 +1,6 @@
-export function showExpenses(element) {
+import { getExpenses } from '../expenses-list/format-expenses.js'
+
+export function showLoading(element) {
     element.innerHTML = `<section>Loading...</section>`
 }
 
@@ -29,3 +31,12 @@ export function renderExpenses(element, expenses) {
 // ol - Ordered List
 // ul - Unordered List
 // li - inside of ol or ul
+
+export async function showExpenses(element) {
+    showLoading(element);
+
+    const result = await getExpenses();
+
+    if(result.success) { renderExpenses(element, result.expenses); }
+    else { showError(element, result.error)}
+}

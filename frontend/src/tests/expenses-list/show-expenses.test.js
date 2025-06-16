@@ -1,5 +1,8 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { showExpenses, showError, showEmptyState, renderExpenses } from '../../expenses-list/show-expenses.js';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { showLoading, showError, showEmptyState, renderExpenses, showExpenses} from '../../expenses-list/show-expenses.js';
+import { getExpenses } from '../../expenses-list/format-expenses.js';
+
+vi.mock('../../expenses-list/format-expenses.js');
 
 describe('UI rendering functions', () => {
     let container;
@@ -9,7 +12,7 @@ describe('UI rendering functions', () => {
     });
 
     it('shows loading message', () => {
-        showExpenses(container);
+        showLoading(container);
         expect(container.innerHTML).toContain('Loading...');
     });
 
@@ -40,3 +43,33 @@ describe('UI rendering functions', () => {
         expect(container.innerHTML).toContain('No Expenses Found');
     });
 });
+
+describe('showExpenses function', () => {
+    let container;
+
+    beforeEach(() => {
+        container = document.createElement('div');
+        vi.clearAllMocks();
+    });
+
+    it('calls renderExpenses on successful fetch', async () => {
+        const fakeExpenses = [
+            { description: 'Lunch', amount: 10, displayDate: '16/06/2025' }
+        ];
+
+        getExpenses.mockResolvedValue({ success: true, expenses: fakeExpenses });
+
+        await showExpenses(container);
+
+        expect(container.innerHTML).toContain('Lunch');
+    });
+
+    it('calls showError on failed fetch', async () => {
+        getExpenses.mockResolvedValue({ success: false, error: 'Server error' });
+
+        await showExpenses(container);
+
+        expect(container.innerHTML).toContain('Server error');
+    });
+});
+
