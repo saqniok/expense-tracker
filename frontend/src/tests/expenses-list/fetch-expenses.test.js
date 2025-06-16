@@ -1,5 +1,5 @@
 import { expect, it, describe, vi, beforeEach } from 'vitest';
-import { getExpenses, getExpensesData } from '../../expenses-list/fetch-expenses.js';
+import { getExpensesData } from '../../expenses-list/fetch-expenses.js';
 
 global.fetch = vi.fn();
 
@@ -16,30 +16,25 @@ describe('getExpenses', () => {
             json: () => fakeExpense
 
         });
-        const result = await getExpenses();
+        const result = await getExpensesData();
         expect(result).toEqual(fakeExpense);
     });
 
     it('testing getExpense with error', async() => {
         fetch.mockResolvedValue({ ok: false });
-        await expect(getExpenses()).rejects.toThrowError("Failed to fetch data")
+        await expect(getExpensesData()).rejects.toThrowError("Failed to fetch data")
     });
     
     it('testing getExpensesData', async () => {
-        const fake = [{ description: "Lunch bij Broodje Mario" }];
         const returnedFake = [{ id: "1a2b3c", description: "Lunch bij Broodje Mario" }];
         fetch.mockResolvedValue({
             ok: true,
             json: () => returnedFake
         });
 
-        const result = await getExpensesData(fake);
+        const result = await getExpensesData();
 
-        expect(fetch).toHaveBeenCalledWith("http://localhost:3000/expenses", {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(fake),
-        });
+        expect(fetch).toHaveBeenCalledWith("http://localhost:3000/expenses");
         expect(result).toEqual(returnedFake);
     })
 });
