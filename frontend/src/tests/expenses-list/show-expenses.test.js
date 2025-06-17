@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { showLoading, showError, showEmptyState, renderExpenses, showExpenses } from '../../expenses-list/show-expenses.js';
+import { showLoading, showEmptyState, renderExpenses, showExpenses } from '../../expenses-list/show-expenses.js';
 import { getExpenses } from '../../expenses-list/format-expenses.js';
 
 vi.mock('../../expenses-list/format-expenses.js');
@@ -14,12 +14,6 @@ describe('UI rendering functions', () => {
     it('shows loading message', () => {
         showLoading(container);
         expect(container.innerHTML).toContain('Loading...');
-    });
-
-    it('shows error message in red', () => {
-        showError(container, 'Something went wrong');
-        expect(container.innerHTML).toContain('Something went wrong');
-        expect(container.innerHTML).toContain('color: red');
     });
 
     it('shows empty state message', () => {

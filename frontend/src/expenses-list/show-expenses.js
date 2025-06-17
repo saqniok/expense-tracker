@@ -1,11 +1,8 @@
 import { getExpenses } from '../expenses-list/format-expenses.js'
+import { showError } from '../ui-helpers.js'
 
 export function showLoading(element) {
     element.innerHTML = `<section>Loading...</section>`
-}
-
-export function showError(element, error) {
-    element.innerHTML = `<section style="color: red;">Error: ${error}</section>`
 }
 
 export function showEmptyState(element) {
@@ -27,10 +24,6 @@ export function renderExpenses(element, expenses) {
 
         element.innerHTML = `<ul>${items.join('')}</ul>`;
 }
-
-// ol - Ordered List
-// ul - Unordered List
-// li - inside of ol or ul
 
 export async function showExpenses(element) {
     showLoading(element);
