@@ -3,6 +3,7 @@ import { showExpenses } from "../expenses-list/show-expenses.js";
 import { showError } from "../ui-helpers.js";
 
 async function submitExpense(form){
+    
     const formData = new FormData(form);
     const data = {
         description: formData.get('description'),
