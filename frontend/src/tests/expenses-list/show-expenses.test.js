@@ -23,13 +23,13 @@ describe('UI rendering functions', () => {
 
     it('renders expense list', () => {
         const expenses = [
-            { description: 'whore', amount: 12, displayDate: '16/06/2025' },
-            { description: 'bitch', amount: 30, displayDate: '15/06/2025' }
+            { description: 'ticket', amount: 12, displayDate: '16/06/2025' },
+            { description: 'taxi', amount: 30, displayDate: '15/06/2025' }
         ];
         renderExpenses(container, expenses);
-        expect(container.querySelectorAll('li').length).toBe(2);
-        expect(container.innerHTML).toContain('whore');
-        expect(container.innerHTML).toContain('bitch');
+
+        expect(container.innerHTML).toContain('ticket');
+        expect(container.innerHTML).toContain('taxi');
     });
 
     it('renders empty state for empty array', () => {

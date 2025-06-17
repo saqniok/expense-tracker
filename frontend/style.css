@@ -1,0 +1,27 @@
+.expense-table {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1rem;
+    font-family: sans-serif;
+}
+
+.expense-header,
+.expense-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+
+.expense-header {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    border-bottom: 2px solid #000;
+}
+
+.expense-row {
+    background-color: #fafafa;
+    border-bottom: 1px solid #ddd;
+}
