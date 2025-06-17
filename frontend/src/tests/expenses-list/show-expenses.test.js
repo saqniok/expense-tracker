@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { showLoading, showError, showEmptyState, renderExpenses, showExpenses} from '../../expenses-list/show-expenses.js';
+import { showLoading, showError, showEmptyState, renderExpenses, showExpenses } from '../../expenses-list/show-expenses.js';
 import { getExpenses } from '../../expenses-list/format-expenses.js';
 
 vi.mock('../../expenses-list/format-expenses.js');
@@ -70,6 +70,42 @@ describe('showExpenses function', () => {
         await showExpenses(container);
 
         expect(container.innerHTML).toContain('Server error');
+    });
+    it('shows list on successful fetch', async () => {
+        getExpenses.mockResolvedValue({
+            success: true,
+            expenses: [
+                { description: 'Coffee', amount: 3, displayDate: '17/06/2025' },
+            ]
+        });
+
+        await showExpenses(container);
+
+        expect(container.innerHTML).toContain('Coffee');
+        expect(container.innerHTML).toContain('17/06/2025');
+    });
+
+    it('shows fallback at empty list', async () => {
+        getExpenses.mockResolvedValue({
+            success: true,
+            expenses: []
+        });
+
+        await showExpenses(container);
+
+        expect(container.innerHTML).toContain('No Expenses Found');
+    });
+
+    it('shows error message in case of error', async () => {
+        getExpenses.mockResolvedValue({
+            success: false,
+            error: 'Server down'
+        });
+
+        await showExpenses(container);
+
+        expect(container.innerHTML).toContain('Server down');
+        expect(container.innerHTML).toContain('color: red');
     });
 });
 

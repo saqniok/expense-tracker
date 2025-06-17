@@ -20,9 +20,9 @@ export function renderExpenses(element, expenses) {
 
     const items = expenses.map(expense =>
         `<li>
-            <span>${expense.description}</span>
-            <span>${expense.amount}</span>
-            <span>${expense.displayDate}</span>
+            <span>${expense.description}...</span>
+            <span>Price: ${expense.amount}€ </span>
+            <span> Date: ${expense.displayDate}</span>
         </li>`);
 
         element.innerHTML = `<ul>${items.join('')}</ul>`;

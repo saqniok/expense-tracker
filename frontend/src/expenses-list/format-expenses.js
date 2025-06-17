@@ -20,5 +20,4 @@ export async function getExpenses() {
     }
 }
 
-// export only for test
 export const __only_for_test = { formatExpenses };
