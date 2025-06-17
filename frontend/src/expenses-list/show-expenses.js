@@ -32,7 +32,7 @@ export function renderExpenses(element, expenses) {
         </div>`
     );
 
-    element.innerHTML = `<ul>${items.join('')}</ul>`;
+    element.innerHTML = `${items.join('')}`;
 
     const total = calculateTotal(expenses);
     const totalEl = document.getElementById('total-amount');

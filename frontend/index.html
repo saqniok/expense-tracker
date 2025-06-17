@@ -13,18 +13,21 @@
         <input name="date" placeholder="DD/MM/YYYY"/>
         <button type="submit">Submit</button>
     </form>
-      <div class="expense-table">
-        <div class="expense-header">
-            <span>Description</span>
-            <span>Amount</span>
-            <span>Date</span>
+    <ul>
+        <div class="expense-table">
+            <div class="expense-header">
+                <span>Description</span>
+                <span>Amount</span>
+                <span>Date</span>
+            </div>
+
+            <div id="app"></div>
+                <div class="expense-footer" id="total-row">
+                    <strong>Total:</strong>
+                    <span id="total-amount">0€</span>
+                </div>
         </div>
-    <div id="app"></div>
-        <div class="expense-footer" id="total-row">
-            <strong>Total:</strong>
-            <span id="total-amount">0€</span>
-        </div>
-    </div>
+    </ul>
 
     </div>
     <script type="module" src="./app.js"></script>
