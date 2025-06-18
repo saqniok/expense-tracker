@@ -7,8 +7,6 @@ vi.mock('../../expenses-list/fetch-expenses.js', () => ({
 import { getExpensesData } from '../../expenses-list/fetch-expenses.js';
 import { __only_for_test, getExpenses } from "../../expenses-list/format-expenses.js";
 
-global.fetch = vi.fn();
-
 describe('get Expenses', () => {
   beforeEach(() => {
     vi.clearAllMocks();

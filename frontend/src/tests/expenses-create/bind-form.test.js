@@ -33,7 +33,8 @@ describe('submitExpense', () => {
         expect(addExpense).toHaveBeenCalledWith({
             description: 'Test description',
             amount: '42',
-            date: '2025-06-17'
+            date: '2025-06-17',
+            category: null
         });
 
         expect(result).toEqual({ success: true });
