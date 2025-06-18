@@ -25,7 +25,8 @@ async function submitExpense(form){
     const data = {
         description: formData.get('description'),
         amount: formData.get('amount'),
-        date: formData.get('date')
+        date: formData.get('date'),
+        category: formData.get('category')
     };
 
     const result = await addExpense(data); // Call the function for adding a flow rate (with validation and network request)

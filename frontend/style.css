@@ -46,28 +46,40 @@
     display: flex;                           /* Центрируем содержимое */
     align-items: center;
     justify-content: center;
-}
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    line-height: 15px;
+    border: 2px solid rgb(28, 110, 164);
+    }
 
 .confirm-delete:focus {
     
     width: 60px;                             /* При фокусе кнопка расширяется */
-    background-color: red;               /* Темнее красный (наведение/подтверждение) */
+    background-color: red;                   /* Темнее красный (наведение/подтверждение) */
     align-items: center;
     justify-content: center;
 }
 
 
 .confirm-label {
-    position: center;                      /* Абсолютное позиционирование внутри кнопки */
-    right: 16px;                              /* Смещаем немного внутрь справа */
-    opacity: 1;                              /* Скрыта по умолчанию */
-    white-space: nowrap;                     /* Не переносить текст */
-    pointer-events: none;                    /* Не мешает клику по кнопке */
-    transition: opacity 0.3s ease;           /* Плавное появление/исчезновение */
-    font-size: 14px;                         /* Размер шрифта */
+    position: static;                        /* Абсолютное позиционирование внутри кнопки */
+    right: 8px;                              /* Смещаем немного внутрь справа */
+    opacity: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    font-size: 14px;
 }
 
 .confirm-delete:focus .confirm-label {
     opacity: 1;                              /* Показываем подпись при фокусе */
     pointer-events: auto;                    /* Делаем кликабельной */
+}
+
+.confirm-label::after {
+    content: 'X';
+}
+
+button[data-confirm="true"] .confirm-label::after {
+    content: 'Delete?';
 }

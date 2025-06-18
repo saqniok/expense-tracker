@@ -23,37 +23,39 @@ export function appendDeleteButton(parent, element, expense) {
     // Create a caption on the button
     const confirmLabel = document.createElement('span');
     confirmLabel.classList.add('confirm-label');
-    confirmLabel.textContent = 'X';  // initial text of the button
+    //confirmLabel.textContent = 'X';  // initial text of the button
 
     button.appendChild(confirmLabel);   // Add the caption inside the button
     parent.appendChild(button);         // Insert the button in the parent DOM element (for example, in <li>)
 
     let confirmState = false; // Logical variable: whether the button requires confirmation
 
+    // Assign a button click handler. It will be called every time the user clicks on the delete button.
+    // The handler will check whether the button requires confirmation or not and if it does - will show a confirmation dialog
     button.addEventListener('click', async () => {
-        if (!confirmState) {
-            // First click - change the text to “Sure?” and wait for confirmation.
-            confirmLabel.textContent = 'Delete?';
-            confirmState = true;
+    if (!confirmState) { // Check whether the confirmation mode (second click) is active now. If not, it means that this is the first click, and we need to ask the user for confirmation
+        
+        button.dataset.confirm = "true";    // visual trigger for CSS (changes text from X to Delete?)
+        confirmState = true;                // logical state in JS to realize that the user has already started the deletion process.
 
-            // Добавляем слушатель "blur" — если пользователь ушёл с кнопки, сбросить состояние
-            const onBlur = () => {
-                confirmLabel.textContent = 'X';
-                confirmState = false;
-                button.removeEventListener('blur', onBlur); // Убираем слушатель после срабатывания
-            };
-            button.addEventListener('blur', onBlur);
-        } else {
-            // Second click - confirmation received, lock the button
-            button.disabled = true;
+        // Blur event handler - called when the button loses focus (for example, the user pressed Tab or clicked sideways).
+        const onBlur = () => {
+            button.dataset.confirm = "false";           // Reset visual state: remove the data-confirm=“true” attribute so that CSS shows a normal button (with X)
+            confirmState = false;                       // Reset logical state in JS - confirmation is no longer active
+            button.removeEventListener('blur', onBlur); // Delete the blur handler after triggering so that we don't have several identical ones.
+        };
+        // Assign a blur handler to the button to track the loss of focus
+        button.addEventListener('blur', onBlur);
 
-            try {
-                await onDeleteButtonClicked(element, expense); // Trying to delete the expense via onDeleteButtonClicked
-            } catch (error) {
-                button.disabled = false; // If an error occurred - unlock the button so that we can try again
-            }
+    } else {
+        button.disabled = true;
+        try {
+            await onDeleteButtonClicked(element, expense);
+        } catch (error) {
+            button.disabled = false;
         }
-    });
+    }
+});
 }
 
 
