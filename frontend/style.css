@@ -34,7 +34,7 @@
     border-radius: 12px;                      /* Круглая по высоте и ширине */
     text-align: center;                      /* Центрируем текст */
     font-size: 1.2rem;                       /* Большая шрифта */
-    background-color: #c0392b;                  /* Красный фон (первичный цвет удаления) */
+    background-color: #c0392b;               /* Красный фон (первичный цвет удаления) */
     color: white;                            /* Белый текст */
     border: none;                            /* Без рамки */
     outline: none;                           /* Без синей рамки при фокусе */
