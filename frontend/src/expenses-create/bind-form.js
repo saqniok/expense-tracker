@@ -8,8 +8,7 @@ async function submitExpense(form){
     const data = {
         description: formData.get('description'),
         amount: formData.get('amount'),
-        date: formData.get('date'),
-        category: formData.get('category')
+        date: formData.get('date')
     };
 
     const result = await addExpense(data);
