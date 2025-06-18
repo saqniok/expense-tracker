@@ -23,7 +23,7 @@ export function appendDeleteButton(parent, element, expense) {
     // Create a caption on the button
     const confirmLabel = document.createElement('span');
     confirmLabel.classList.add('confirm-label');
-    confirmLabel.textContent = 'Delete';  // initial text of the button
+    confirmLabel.textContent = 'X';  // initial text of the button
 
     button.appendChild(confirmLabel);   // Add the caption inside the button
     parent.appendChild(button);         // Insert the button in the parent DOM element (for example, in <li>)
@@ -33,8 +33,16 @@ export function appendDeleteButton(parent, element, expense) {
     button.addEventListener('click', async () => {
         if (!confirmState) {
             // First click - change the text to “Sure?” and wait for confirmation.
-            confirmLabel.textContent = 'Sure?';
+            confirmLabel.textContent = 'Delete?';
             confirmState = true;
+
+            // Добавляем слушатель "blur" — если пользователь ушёл с кнопки, сбросить состояние
+            const onBlur = () => {
+                confirmLabel.textContent = 'X';
+                confirmState = false;
+                button.removeEventListener('blur', onBlur); // Убираем слушатель после срабатывания
+            };
+            button.addEventListener('blur', onBlur);
         } else {
             // Second click - confirmation received, lock the button
             button.disabled = true;

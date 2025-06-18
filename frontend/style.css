@@ -1,27 +1,73 @@
 .expense-table {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    margin-top: 1rem;
-    font-family: sans-serif;
+    display: flex;                           /* Колонка со списком расходов как flex-контейнер */
+    flex-direction: column;                  /* Располагаем строки вертикально */
+    gap: 0.25rem;                            /* Отступ между строками */
+    margin-top: 1rem;                        /* Отступ сверху от других элементов */
+    font-family: sans-serif;                 /* Простой, читаемый шрифт */
 }
+
 
 .expense-header,
 .expense-row {
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 0.1fr;
-    gap: 1rem;
-    padding: 0.5rem 1rem;
-    align-items: center;
+    display: grid;                           /* Используем grid-сетку для выравнивания данных */
+    grid-template-columns: 3fr 1fr 1fr 1fr 90px;
+                                             /* Сетка: описание (шире), сумма, дата, категория, кнопка */
+    gap: 1rem;                               /* Расстояние между колонками */
+    padding: 0.5rem 1rem;                    /* Внутренние отступы */
+    align-items: center;                     /* Вертикальное выравнивание элементов */
 }
 
+
 .expense-header {
-    font-weight: bold;
-    background-color: #f0f0f0;
-    border-bottom: 2px solid #000;
+    font-weight: bold;                       /* Жирный текст для заголовков */
+    background-color: #f0f0f0;               /* Светло-серый фон */
+    border-bottom: 2px solid #000;           /* Чёрная граница снизу */
 }
 
 .expense-row {
-    background-color: #fafafa;
-    border-bottom: 1px solid #ddd;
+    background-color: #fafafa;               /* Очень светлый фон для строк */
+    border-bottom: 1px solid #ddd;           /* Тонкая серая линия-разделитель */
+}
+.confirm-delete {
+    width: 32px;                             /* Начальная ширина кнопки */
+    height: 32px;                            /* Круглая по высоте */
+    border-radius: 12px;                      /* Круглая по высоте и ширине */
+    text-align: center;                      /* Центрируем текст */
+    font-size: 1.2rem;                       /* Большая шрифта */
+    background-color: #c0392b;                  /* Красный фон (первичный цвет удаления) */
+    color: white;                            /* Белый текст */
+    border: none;                            /* Без рамки */
+    outline: none;                           /* Без синей рамки при фокусе */
+    position: relative;                      /* Для позиционирования дочерних элементов */
+    overflow: hidden;                        /* Обрезаем лишнее, если кнопка сужается */
+    cursor: pointer;                         /* Указатель при наведении */
+    transition: width 0.3s ease, background-color 0.3s ease;
+                                             /* Плавная анимация на изменение ширины и фона */
+    display: flex;                           /* Центрируем содержимое */
+    align-items: center;
+    justify-content: center;
+}
+
+.confirm-delete:focus {
+    
+    width: 60px;                             /* При фокусе кнопка расширяется */
+    background-color: red;               /* Темнее красный (наведение/подтверждение) */
+    align-items: center;
+    justify-content: center;
+}
+
+
+.confirm-label {
+    position: center;                      /* Абсолютное позиционирование внутри кнопки */
+    right: 16px;                              /* Смещаем немного внутрь справа */
+    opacity: 1;                              /* Скрыта по умолчанию */
+    white-space: nowrap;                     /* Не переносить текст */
+    pointer-events: none;                    /* Не мешает клику по кнопке */
+    transition: opacity 0.3s ease;           /* Плавное появление/исчезновение */
+    font-size: 14px;                         /* Размер шрифта */
+}
+
+.confirm-delete:focus .confirm-label {
+    opacity: 1;                              /* Показываем подпись при фокусе */
+    pointer-events: auto;                    /* Делаем кликабельной */
 }
