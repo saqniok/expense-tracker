@@ -59,7 +59,9 @@
     align-items: center;
     justify-content: center;
 }
-
+.confirm-delete:active{
+    background-color: white;
+}
 
 .confirm-label {
     position: static;                        /* Абсолютное позиционирование внутри кнопки */
