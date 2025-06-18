@@ -29,6 +29,7 @@ export function renderExpenses(element, expenses) {
             <span>${expense.description}</span>
             <span>${expense.amount}€</span>
             <span>${expense.displayDate}</span>
+            <span>${expense.category}</span>
         </div>`
     );
 

@@ -9,7 +9,7 @@
 .expense-header,
 .expense-row {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
     gap: 1rem;
     padding: 0.5rem 1rem;
     align-items: center;
