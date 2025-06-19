@@ -56,7 +56,7 @@ async function updateUI(form, element, result) {
  * @param {*} form This is the DOM element of the form that the user filled out and submitted
  * @param {*} element This is a container (usually <ul> or <div>) to display a list of expenses.
  */
-function bindFormSubmit(form, element){
+export function bindFormSubmit(form, element){
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // preventDefault prevents the form from being submitted (which reloads the page)
 
