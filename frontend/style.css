@@ -53,7 +53,6 @@
     }
 
 .confirm-delete:focus {
-    
     width: 60px;                             /* При фокусе кнопка расширяется */
     background-color: red;                   /* Темнее красный (наведение/подтверждение) */
     align-items: center;
