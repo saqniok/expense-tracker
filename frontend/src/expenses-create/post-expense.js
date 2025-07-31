@@ -1,7 +1,7 @@
 export async function createExpense(data) {
 
     // Send a POST request to the local server at /expenses
-    const response = await fetch('http://localhost:3000/expenses', {
+    const response = await fetch('https://localhost:5139/api/expenses', {
         method: 'POST',                                     // POST - HTTP method - creating a new resource
         headers: { 'Content-Type': 'application/json' },    // Specify that we are sending JSON
         body: JSON.stringify(data),                         // Convert data object to JSON string
