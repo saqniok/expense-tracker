@@ -9,6 +9,6 @@ namespace ExpensiveInnit.WebApi.Models
         public decimal Amount { get; set; }
 
         [JsonConverter(typeof(DateOnlyJsonConverter))]
-        public DateTime Date { get; set; }
+        public DateOnly Date { get; set; }
     }
 }
