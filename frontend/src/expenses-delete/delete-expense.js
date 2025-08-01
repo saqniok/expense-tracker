@@ -6,7 +6,7 @@
  */
 export async function deleteExpense(id) {
     // Make a DELETE request to the server to delete the expense with the given ID
-    const response = await fetch(`https://localhost:5139/api/expenses/${id}`, {
+    const response = await fetch(`http://localhost:5139/api/expenses/${id}`, {
         method: 'DELETE'
     });
 

@@ -18,7 +18,7 @@ describe('createExpense', () => {
 
     const result = await createExpense(fakeExpense);
 
-    expect(fetch).toHaveBeenCalledWith('https://localhost:5139/api/expenses', {
+    expect(fetch).toHaveBeenCalledWith('http://localhost:5139/api/expenses', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(fakeExpense),

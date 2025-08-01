@@ -14,7 +14,7 @@ describe('delete Expenses', () => {
         });
 
         const result = await deleteExpense('123');
-        expect(fetch).toHaveBeenCalledWith('https://localhost:5139/api/expenses/123', { method: 'DELETE' });
+        expect(fetch).toHaveBeenCalledWith('http://localhost:5139/api/expenses/123', { method: 'DELETE' });
         expect(result).toBe(true);
     });
 
