@@ -45,6 +45,13 @@ namespace ExpensiveInnit.WebApi.Controllers
             return CreatedAtAction(nameof(GetExpense), new { id = expense.Id }, expense);
         }
 
+
+        //////////////////////////////////////////////////
+        // For Updating Expenses, NOT implemented fully //
+        //////////////////////////////////////////////////
+
+        /// <param name="id"></param>
+        /// <returns></returns>
         // // PUT: api/expenses/5
         // [HttpPut("{id}")]
         // public async Task<IActionResult> PutExpense(int id, Expense expense)

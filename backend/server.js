@@ -11,7 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 // Utility to read and write file
-async function readExpenses() {
+async function readExpenses() 
+{
   try {
     const data = await fs.readFile(DATA_FILE, 'utf8');
     return JSON.parse(data);
@@ -20,7 +21,8 @@ async function readExpenses() {
   }
 }
 
-async function writeExpenses(expenses) {
+async function writeExpenses(expenses) 
+{
   await fs.writeFile(DATA_FILE, JSON.stringify(expenses, null, 2));
 }
 
@@ -34,7 +36,8 @@ app.get('/expenses', async (req, res) => {
 app.post('/expenses', async (req, res) => {
   const { description, amount, date, category } = req.body;
 
-  if (!description || !amount || !date) {
+  if (!description || !amount || !date) 
+  {
     return res.status(400).json({ error: 'description, amount, and date are required' });
   }
 
@@ -60,7 +63,8 @@ app.delete('/expenses/:id', async (req, res) => {
   const originalLength = expenses.length;
   expenses = expenses.filter(exp => exp.id !== id);
 
-  if (expenses.length === originalLength) {
+  if (expenses.length === originalLength) 
+  {
     return res.status(404).json({ error: 'Expense not found' });
   }
 
